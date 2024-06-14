@@ -1,8 +1,22 @@
+@font-face {
+  font-family: "Bell MT Regular";
+  src: url("./fonts/bell.eot");
+  src: url("./fonts/bell?#iefix") format("embedded-opentype"),
+    url("./fonts/bell.woff") format("woff"),
+    url("./fonts/bell.woff2") format("woff2"),
+    url("./fonts/bell.ttf") format("truetype"),
+    url("./fonts/bell.svg#Bell MT Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body,
-html{
-      margin: 0;
-      padding: 0;
-      height: 100%;
+html {
+  font-family: "Bell MT Regular";
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -12,52 +26,108 @@ body::-webkit-scrollbar {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 body {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@media only screen and (min-width: 600px) {
+  #frame {
+    border: 15px solid #ffffff;
+    box-sizing: border-box;
+    height: 100%;
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    z-index: 2000;
+  }
+}
+
+#content {
+  margin-bottom: -100px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+#content,
+#feedback,
+[id^="message"],
+.scrollIndicator {
+  transition: all 1s;
+}
+
+h4 {
+  text-transform: uppercase;
+}
+
+.sticky {
+  display: block;
+  height: 6000px;
+  position: relative;
 }
 
 svg {
-      display: block;
-      width: 100%;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
-  
+
 .scrollElement {
-      position: absolute;
-      height: 6000px;
-      width: 100px;
-      top: 0;
-      z-index: 0;
+  height: calc(6000px + 90vh);
+  margin-top: -90vh;
+  position: absolute;
+  width: 10px;
+  top: 0;
+  z-index: 0;
 }
 
-  .btn {
-      position: fixed;
-      bottom: 5%;
-      right: 0px;
-      transform: translateX(-50%);
-      border: 1px solid #fff;
-      border-radius: 5px;
-      font-size: 0.9rem;
-      padding: 0.5rem 0.7em;
-      background-color: transparent;
-      color: #ffffff;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      cursor: pointer;
-      transition: all .3s;
-      z-index: 11;
+.scrollIndicator {
+  height: 75px;
+  position: relative;
+  margin: auto;
+  &::before {
+    animation: slide 3s infinite;
+    -webkit-animation: slide 3s infinite;
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    content: "";
+    height: 14px;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 0%;
+    transform: rotate(45deg) translateX(-50%);
+    width: 14px;
   }
+}
 
-  .btn_works {
-      left: 100px;
-      right: unset;
-      text-decoration: none;
+@keyframes slide {
+  0% {
+    opacity: 0;
+    top: 0%;
   }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: 100%;
+  }
+}
 
-  .btn:hover {
-      background: #ffffff;
-      color: #1B1734;
+@-webkit-keyframes slide {
+  0% {
+    opacity: 0;
+    top: 0%;
   }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: 100%;
+  }
+}
